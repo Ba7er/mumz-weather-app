@@ -1,0 +1,68 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Astro {
+  moonrise: String!
+  moonset: String!
+  sunrise: String!
+  sunset: String!
+}
+
+type Condition {
+  text: String!
+}
+
+type CurrentWeather {
+  condition: Condition!
+  humidity: Int!
+  last_updated: String!
+  temp_c: Float!
+  wind_dir: String!
+  wind_kph: Float!
+}
+
+type Day {
+  avghumidity: Int!
+  avgtemp_c: Float!
+  condition: Condition!
+  daily_chance_of_rain: Int!
+  daily_chance_of_snow: Int!
+  daily_will_it_rain: Int!
+  daily_will_it_snow: Int!
+  maxtemp_c: Float!
+  maxwind_kph: Float!
+  mintemp_c: Float!
+}
+
+type Forecast {
+  forecastday: [ForecastDay!]!
+}
+
+type ForecastDay {
+  astro: Astro!
+  date: String!
+  day: Day!
+}
+
+type Location {
+  country: String!
+  lat: Float!
+  localtime: String!
+  localtime_epoch: Int!
+  lon: Float!
+  name: String!
+  region: String!
+  tz_id: String!
+}
+
+type Query {
+  getWeather(city: String!): WeatherQueryResponse!
+  getWeatherForecast(city: String!): WeatherQueryResponse!
+}
+
+type WeatherQueryResponse {
+  current: CurrentWeather!
+  forecast: Forecast!
+  location: Location!
+}
