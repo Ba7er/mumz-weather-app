@@ -37,7 +37,6 @@ import configurations from './libs/config/configurations';
         password: configService.get<string>('database.password'),
         database: configService.get<string>('database.name'),
         entities: [User, Location, City, Country],
-        synchronize: true,
       }),
       inject: [ConfigService],
     }),
