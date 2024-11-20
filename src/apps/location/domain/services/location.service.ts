@@ -137,7 +137,11 @@ export class LocationService {
       .select('city.name')
       .innerJoin('location.city', 'city')
       .getRawMany();
-    const cities: string[] = cityNames.map((result) => result.city_name);
+
+    // Set() to remove duplicate cities
+    const cities: string[] = [
+      ...new Set(cityNames.map((result) => result.city_name)),
+    ];
     return cities;
   }
 }

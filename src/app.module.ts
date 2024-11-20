@@ -55,7 +55,7 @@ import configurations from './libs/config/configurations';
     }),
     CacheModule.register({
       isGlobal: true,
-      ttl: 15 * 60 * 1000, // 15 minutes
+      ttl: 60 * 60 * 1000, // 1 hour
     }),
     ScheduleModule.forRoot(),
     ThrottlerModule.forRoot([

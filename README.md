@@ -1,99 +1,93 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Weather API Wrapper
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A NestJS application that wraps around a third-party weather API, providing REST and GraphQL endpoints for weather data along with user-specific location management.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+---
 
-## Description
+## Table of Contents
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+1. [Setup Instructions](#setup-instructions)
+2. [API Documentation](#api-documentation)
+3. [Caching Strategy](#caching-strategy)
+4. [Assumptions and Design Decisions](#assumptions-and-design-decisions)
 
-## Project setup
+---
 
-```bash
-$ npm install
-```
+## Setup Instructions
 
-## Compile and run the project
+Clone this repo and follow these steps to set up and run the application:
 
-```bash
-# development
-$ npm run start
+1. **ENV Variable**
 
-# watch mode
-$ npm run start:dev
+   In the root directory make sure to create `.env` file. Use these values
 
-# production mode
-$ npm run start:prod
-```
+   ```bash
+   DB_HOST=localhost
+   DB_PORT=5432
+   DB_USERNAME=postgres
+   DB_PASSWORD=postgres
+   DB_DATABASE=postgres
+   JWT_SECRET=M4vdkbl1NQMgb023Zao27jhTi5T6sx9aBw8Mb1RayY8
+   JWT_EXPIRY_TIME=1d
+   WEATHER_API_KEY=0b79639184d742f1b7b185322192211
+   ```
 
-## Run tests
+2. **Ensure Docker is Installed**
 
-```bash
-# unit tests
-$ npm run test
+   Make sure Docker is installed and running on your system.
 
-# e2e tests
-$ npm run test:e2e
+3. **Run PostgreSQL Database**  
+   In terminal `cd` into root directory Use the following command to start a PostgreSQL container:
+   ```bash
+   docker-compose up --build
+   ```
+4. **Run Migration Scripts**
 
-# test coverage
-$ npm run test:cov
-```
+   In terminal `cd` into root directory and run below command to create the database and populate city and country table with data
 
-## Deployment
+   ```bash
+   npm run migrate
+   ```
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+5. **Build the app**
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+   ```bash
+   npm run build
+   ```
 
-```bash
-$ npm install -g mau
-$ mau deploy
-```
+6. **Start the app**
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+   ```bash
+   npm run start
+   ```
 
-## Resources
+## API Documentation
 
-Check out a few resources that may come in handy when working with NestJS:
+once the app is up and running you can open the documentation using this link http://localhost:9100/api#
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+## Caching Strategy
 
-## Support
+1. NestJS built-in caching is used to store weather data.
+2. Fetched Weather data is cached globally for 1 hour.
+3. For registered premium users, and for better user experience, their favorite location weather data is cached and refreshed every 15 minutes, aligned with the weather API’s frequent updates (every 10-15 minutes).
+4. Non-registered users will not receive the latest weather updates for cities, ensuring efficient use of the weather API.
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## Assumptions and Design Decisions
 
-## Stay in touch
+1. **`POST /location` API**
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+   - The system uses city and country tables to validate city names when users add locations via the `POST /locations` API. This ensures that only correct cities are stored, preventing errors during weather data retrieval and ensuring accurate city names are used when refreshing cached data.
+   - The system allows users to add up to 10 locations to their favorites via the `POST /locations API`. This limitation ensures optimal performance and prevents excessive API calls to the weather API service
 
-## License
+   - For simplicity, The system does not support saving locations by Latitude and Longitude, it saves location as a city
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+2. **`GET forecast/:city` API**
+
+   - Since we are utilizing Weather API free plan, we only get 3 days forecast, and in some cases only 2.
+   - the number of forecast `days` is 5 and is hardcoded in the system.
+
+3. **Weather Data**:
+
+   - The goal is to increase the percentage of `CACHE HIT` for better user experienc (For both registered and Non registered users), therefore, Weather data (Including forecasts) are not saved in a DB table and considered redundant, they are either cached or fetched from weather API
+
+4. **DB Diagram**

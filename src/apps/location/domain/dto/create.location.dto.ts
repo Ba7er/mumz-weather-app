@@ -1,4 +1,9 @@
-import { IsArray, IsString, ArrayNotEmpty } from 'class-validator';
+import {
+  IsArray,
+  IsString,
+  ArrayNotEmpty,
+  ArrayMaxSize,
+} from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateLocationDto {
@@ -10,5 +15,6 @@ export class CreateLocationDto {
   @IsArray()
   @ArrayNotEmpty()
   @IsString({ each: true })
+  @ArrayMaxSize(10)
   cities: string[];
 }
