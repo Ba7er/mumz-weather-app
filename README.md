@@ -38,10 +38,18 @@ Clone this repo and follow these steps to set up and run the application:
 
 3. **Run PostgreSQL Database**  
    In terminal `cd` into root directory Use the following command to start a PostgreSQL container:
+
    ```bash
    docker-compose up --build
    ```
-4. **Run Migration Scripts**
+
+4. **Install Dependencies**
+
+   ```bash
+   npm install
+   ```
+
+5. **Run Migration Scripts**
 
    In terminal `cd` into root directory and run below command to create the database and populate city and country table with data
 
@@ -49,13 +57,13 @@ Clone this repo and follow these steps to set up and run the application:
    npm run migrate
    ```
 
-5. **Build the app**
+6. **Build the app**
 
    ```bash
    npm run build
    ```
 
-6. **Start the app**
+7. **Start the app**
 
    ```bash
    npm run start
