@@ -97,3 +97,14 @@ once the app is up and running you can open the documentation using this link ht
 3. **Weather Data**:
 
    - The goal is to increase the percentage of `CACHE HIT` for better user experienc (For both registered and Non registered users), therefore, Weather data (Including forecasts) are not saved in a DB table and considered redundant, they are either cached or fetched from weather API
+
+## GraphQL cURL
+
+```bash
+curl --location 'http://localhost:9100/graphql' \
+--header 'Content-Type: application/json' \
+--data '{
+  "query": "query { getWeatherForecast(city: \"Damascus\") { location { name  } current { condition { text }  humidity } forecast { forecastday { date  day { maxtemp_c mintemp_c avgtemp_c maxwind_kph avghumidity daily_will_it_rain daily_chance_of_rain daily_will_it_snow daily_chance_of_snow condition { text } } astro { sunrise sunset moonrise moonset } } } } }"
+}
+'
+```
