@@ -89,5 +89,3 @@ once the app is up and running you can open the documentation using this link ht
 3. **Weather Data**:
 
    - The goal is to increase the percentage of `CACHE HIT` for better user experienc (For both registered and Non registered users), therefore, Weather data (Including forecasts) are not saved in a DB table and considered redundant, they are either cached or fetched from weather API
-
-4. **DB Diagram**
