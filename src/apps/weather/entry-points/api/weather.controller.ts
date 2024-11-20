@@ -1,5 +1,5 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { ApiOperation, ApiQuery, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { WeatherService } from '../../domain/services/weather.service';
 
 @ApiTags('Weather')
@@ -22,13 +22,6 @@ export class WeatherController {
       'Fetches the weather forecast for the given city and number of days.',
   })
   @Get('forecast/:city')
-  @ApiQuery({
-    name: 'days',
-    description: 'Number of days to get the weather forecast for',
-    required: false,
-    example: 7,
-    type: Number,
-  })
   handleForeCastRequest(@Param('city') city: string) {
     return this.weatherService.getForecastData(city);
   }
