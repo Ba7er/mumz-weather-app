@@ -39,6 +39,8 @@ Clone this repo and follow these steps to set up and run the application:
 3. **Run PostgreSQL Database**  
    In terminal `cd` into root directory Use the following command to start a PostgreSQL container:
 
+   Note: this setup uses `postgres` and a username and a password. Pleae make sure that these credentials dont conflict with what you have in Postgres DB client (studio)
+
    ```bash
    docker-compose up --build
    ```
